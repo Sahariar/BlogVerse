@@ -16,7 +16,7 @@ class HomeController extends Controller
         $categories = Category::all();
         $posts = $posts = Post::when(request('category_id'), function ($query) {
             $query->where('category_id', request('category_id'));
-        })->latest()->get();;
+        })->latest()->get();
         return view('home' ,compact('categories' , 'posts') );
     }
 
