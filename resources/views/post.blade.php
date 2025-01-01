@@ -17,7 +17,7 @@
     </div>
   </section>
 
-<section>
+<section class="bg-white">
   <div
     class="mx-auto max-w-screen-xl px-4 py-10 lg:flex lg:h-2/3 lg:items-center"
   >
