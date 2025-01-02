@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class PostFactory extends Factory
             'title' => $title,
             'content' => $this->faker->paragraph,
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(), // Ensure valid category,
+            'user_id' => User::factory(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

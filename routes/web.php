@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');
+// Routes for showing posts without middleware
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,8 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('categories', CategoryController::class);
-    Route::resource('posts', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->middleware('is_admin');
+    Route::resource('posts', PostController::class)->except(['index', 'show']);
 });
 
 require __DIR__.'/auth.php';
